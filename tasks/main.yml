@@ -1,0 +1,25 @@
+---
+- name: Get Deployment results from bamboo instance {{bamboo_instance}} 
+  vars:
+    bamboo_user: "{{ lookup('env', 'AZURE_AD_USER') }}"
+    bamboo_user_password: "{{ lookup('env', 'AZURE_PASSWORD') }}"
+    bamboo_instance: "{{ bamboo_resultsUrl.split('/')[2] }}"
+    bamboo_deploy_id: "{{ bamboo_resultsUrl.split('=')[1] }}"
+  block:
+    - name: Get Deployment results from bamboo instance {{bamboo_instance}} 
+      uri:
+          url: http://{{bamboo_instance}}/rest/api/latest/deploy/result/{{bamboo_deploy_id}}
+          method: GET
+          user: '{{ bamboo_user }}'
+          password: '{{ bamboo_user_password }}'
+          force_basic_auth: yes
+          status_code: 200
+      register: results
+      failed_when: results.json.deploymentState == 'FAILED'
+      
+    - name: include task for success deploy results
+      include_tasks: tasks/bamboo_deploy_success_notif.yml
+
+  rescue:
+    - name: include task for failed deploy results
+      include_tasks: tasks/bamboo_deploy_failed_notif.yml

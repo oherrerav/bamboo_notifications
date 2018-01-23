@@ -1,0 +1,39 @@
+- name: Create a Failed Notification card
+  office_365_connector_card:
+    webhook: "{{ teams_webhook }}"
+    summary: This is the notification for bamboo
+    title: "{{ bamboo_deploy_project }} {{ bamboo_deploy_release }} failed deploying to {{bamboo_deploy_environment }}"
+    color: E81123
+    sections:
+    - title: "Release **{{ bamboo_deploy_release }}**"
+      activity_image: https://eus1-urlp.secure.skypeassets.com/contentapi1/7d61c125-fd0e-4f1a-b9f4-c2b5581f98c9
+      activity_title: "**{{bamboo_deploy_environment }}** status update"
+      activity_subtitle: Notified by Ansible
+      activity_text: Previous version **{{bamboo_deploy_previous_release}}**
+      actions:
+      - "@type": OpenUri
+        name: View Details
+        targets:
+        - os: default
+          uri: "{{ bamboo_resultsUrl }}"
+  when: bamboo_deploy_rollback == 'false'
+
+- name: Create a Failed Notification card when is a rollback
+  office_365_connector_card:
+    webhook: "{{ teams_webhook }}"
+    summary: This is the notification for bamboo
+    title: "{{ bamboo_deploy_project }} RollBack failed deploying to {{bamboo_deploy_environment }}"
+    color: FFD700
+    sections:
+    - title: "Release **{{ bamboo_deploy_release }}**"
+      activity_image: https://eus1-urlp.secure.skypeassets.com/contentapi1/7d61c125-fd0e-4f1a-b9f4-c2b5581f98c9
+      activity_title: "**{{bamboo_deploy_environment }}** status update"
+      activity_subtitle: Notified by Ansible
+      activity_text: Previous version **{{bamboo_deploy_previous_release}}**
+      actions:
+      - "@type": OpenUri
+        name: View Details
+        targets:
+        - os: default
+          uri: "{{ bamboo_resultsUrl }}"
+  when: bamboo_deploy_rollback == 'true'      
