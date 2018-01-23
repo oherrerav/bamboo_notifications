@@ -16,7 +16,9 @@
         targets:
         - os: default
           uri: "{{ bamboo_resultsUrl }}"
-  when: bamboo_deploy_rollback == 'false'
+  when: 
+    - bamboo_deploy_rollback == 'false' 
+    - teams_webhook != 'https://outlook.office.com/webhook/xx/IncomingWebhook/xxxx'
 
 - name: Create a Failed Notification card when is a rollback
   office_365_connector_card:
@@ -36,4 +38,6 @@
         targets:
         - os: default
           uri: "{{ bamboo_resultsUrl }}"
-  when: bamboo_deploy_rollback == 'true'      
+  when: 
+    - bamboo_deploy_rollback == 'true'      
+    - teams_webhook != 'https://outlook.office.com/webhook/xx/IncomingWebhook/xxxx'

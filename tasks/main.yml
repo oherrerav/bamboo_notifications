@@ -15,6 +15,7 @@
           force_basic_auth: yes
           status_code: 200
       register: results
+      when: bamboo_instance != 'bamboo_results'
       failed_when: results.json.deploymentState == 'FAILED'
       
     - name: include task for success deploy results

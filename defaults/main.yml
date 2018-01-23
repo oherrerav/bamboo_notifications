@@ -1,14 +1,11 @@
 ---
-bamboo_appUrl: >-
-   http://ci.canal.acp:18085/deploy/viewDeploymentResult.action?deploymentResultId=9535669
+bamboo_appUrl: "app_uri"
 bamboo_deploy_environment: Development
 bamboo_deploy_previous_release: v0.0.0
-bamboo_deploy_project: Admeasurement
+bamboo_deploy_project: project
 bamboo_deploy_release: develop
 bamboo_deploy_rollback: 'true'
-bamboo_resultsUrl: >-
-  http://ci.canal.acp:18085/deploy/viewDeploymentResult.action?deploymentResultId=9535669
-teams_webhook: >-
-  https://outlook.office.com/webhook/5c13bd95-4623-49d5-9055-02ec8f4df94f@e9d094df-e4a7-405f-aeaf-13ec2fb28cef/IncomingWebhook/0f64641cf15b4c3285d90effff52a6d1/4e1ea3c0-11d9-4e53-8c0b-614e93242bb7
+bamboo_resultsUrl: "http://bamboo_results/deploy/viewDeploymentResult.action?deploymentResultId=9535669"
+teams_webhook: "https://outlook.office.com/webhook/xx/IncomingWebhook/xxxx"
 AZURE_AD_USER: user
 AZURE_PASSWORD: password
