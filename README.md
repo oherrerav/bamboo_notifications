@@ -1,8 +1,7 @@
 ## Role Bamboo Notifications
 =========
 
-[![Build Status](https://travis-ci.org/oherrerav/bamboo_notifications.svg?branch=master)]
-(https://travis-ci.org/oherrerav/bamboo_notifications)
+[![Build Status](https://travis-ci.org/oherrerav/bamboo_notifications.svg?branch=master)](https://travis-ci.org/oherrerav/bamboo_notifications)
 
 This role is used for send customs notifications for deployments in Bamboo.
 
